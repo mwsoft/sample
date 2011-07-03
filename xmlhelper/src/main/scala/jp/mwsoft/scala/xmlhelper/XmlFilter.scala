@@ -1,4 +1,4 @@
-package jp.mwsoft.scala.xmlhelper
+package jp.mwsoft.sample.xmlhelper
 
 import scala.xml.NodeSeq
 

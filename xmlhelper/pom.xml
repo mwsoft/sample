@@ -2,13 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>jp.mwsoft.sample</groupId>
-	<artifactId>sample</artifactId>
+	<artifactId>xmlhelper</artifactId>
 	<version>0.0.1</version>
 
 	<properties>
-		<maven.compiler.source>1.5</maven.compiler.source>
-		<maven.compiler.target>1.5</maven.compiler.target>
-		<encoding>UTF-8</encoding>
 		<scala.version>2.9.0</scala.version>
 	</properties>
 
@@ -74,50 +71,44 @@
 					</includes>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.4.2</version>
-				<executions>
-					<execution>
-						<id>default-copy-resources</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<overwrite>true</overwrite>
-							<outputDirectory>${project.build.directory}</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${project.basedir}/src</directory>
-									<includes>
-										<include>packageLinkDefs.properties</include>
-									</includes>
-									<filtering>true</filtering>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.scala-tools</groupId>
-				<artifactId>maven-scala-plugin</artifactId>
-			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.scala-tools
+										</groupId>
+										<artifactId>
+											maven-scala-plugin
+										</artifactId>
+										<versionRange>
+											[2.15.0,)
+										</versionRange>
+										<goals>
+											<goal>compile</goal>
+											<goal>testCompile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 </project>
