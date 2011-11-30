@@ -10,7 +10,7 @@ object WordCountSample extends STool {
   override def run(args: Array[String]): Int = {
     // jobName, inputPath, outputPathを指定してJobを取得
     // MapperやReducerも自動的にセットされる
-    val job = getJob("wordCount", "data/in", "data/out")
+    val job = createJob("wordCount", "data/in", "data/out")
 
     // 足りない処理があればここらへんに書く
     // job.setGroupingComparatorClass(...) みたいな

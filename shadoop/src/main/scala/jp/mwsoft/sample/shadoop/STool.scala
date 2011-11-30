@@ -26,7 +26,7 @@ trait STool extends Configured with Tool {
   // Comparetorとかも設定できるようにしようかな
 
   /** 設定されたMapperやReducerの情報を元にいろいろ設定したJobを返す */
-  def getJob(jobName: String, inputPath: String, outputPath: String, conf: Configuration = getConf()): Job = {
+  def createJob(jobName: String, inputPath: String, outputPath: String, conf: Configuration = getConf()): Job = {
     val job = new Job(conf, jobName)
 
     FileInputFormat.setInputPaths(job, inputPath)
