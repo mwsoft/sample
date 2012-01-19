@@ -1,24 +1,22 @@
 package jp.mwsoft.sample.scala.gui
 
 import java.awt.Font
+
 import scala.collection.JavaConversions.asScalaIterator
+import scala.swing.event.ButtonClicked
+import scala.swing.event.MouseEntered
+import scala.swing.event.MousePressed
+import scala.swing.event.MouseReleased
 import scala.swing.BoxPanel
 import scala.swing.Button
-import scala.swing.Dimension
+import scala.swing.Dialog
 import scala.swing.Label
 import scala.swing.MainFrame
 import scala.swing.Orientation
 import scala.swing.SimpleSwingApplication
+
 import javax.swing.plaf.FontUIResource
 import javax.swing.UIManager
-import scala.swing.event.ButtonClicked
-import scala.swing.Dialog
-import scala.swing.event.MouseEntered
-import scala.swing.event.MouseClicked
-import java.awt.event.MouseWheelEvent
-import scala.swing.event.MousePressed
-import scala.swing.event.MouseReleased
-import scala.swing.event.KeyPressed
 
 object ButtonEventSample extends SimpleSwingApplication {
 

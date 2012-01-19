@@ -1,18 +1,22 @@
 package jp.mwsoft.sample.scala.gui
 
-import scala.swing.{ SimpleSwingApplication, MainFrame, Dimension, Label }
-import scala.swing.BoxPanel
-import scala.swing.Orientation
 import java.awt.Font
-import java.io.File
-import javax.swing.UIManager
-import javax.swing.plaf.FontUIResource
+
 import scala.collection.JavaConversions.asScalaIterator
-import scala.swing.Button
+import scala.swing.Dimension
 import scala.swing.BorderPanel
+import scala.swing.BoxPanel
+import scala.swing.Button
 import scala.swing.FlowPanel
-import scala.swing.GridPanel
 import scala.swing.GridBagPanel
+import scala.swing.GridPanel
+import scala.swing.Label
+import scala.swing.MainFrame
+import scala.swing.Orientation
+import scala.swing.SimpleSwingApplication
+
+import javax.swing.plaf.FontUIResource
+import javax.swing.UIManager
 
 object PanelSample extends SimpleSwingApplication {
 

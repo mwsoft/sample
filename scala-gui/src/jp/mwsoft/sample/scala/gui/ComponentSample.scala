@@ -1,21 +1,22 @@
 package jp.mwsoft.sample.scala.gui
-import scala.swing.SimpleSwingApplication
-import scala.swing.MainFrame
-import javax.swing.UIManager
-import javax.swing.plaf.FontUIResource
 import java.awt.Font
+
 import scala.collection.JavaConversions.asScalaIterator
-import scala.swing.TextField
 import scala.swing.BoxPanel
-import scala.swing.Orientation
-import java.awt.Dimension
-import scala.swing.TextArea
-import scala.swing.CheckBox
 import scala.swing.ButtonGroup
-import scala.swing.RadioButton
+import scala.swing.CheckBox
+import scala.swing.MainFrame
+import scala.swing.Orientation
 import scala.swing.PasswordField
 import scala.swing.ProgressBar
+import scala.swing.RadioButton
+import scala.swing.SimpleSwingApplication
 import scala.swing.Slider
+import scala.swing.TextArea
+import scala.swing.TextField
+
+import javax.swing.plaf.FontUIResource
+import javax.swing.UIManager
 
 object ComponentSample extends SimpleSwingApplication {
 

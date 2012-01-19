@@ -1,16 +1,20 @@
 package jp.mwsoft.sample.scala.gui
 
-import scala.swing.{ SimpleSwingApplication, MainFrame, Dimension, BoxPanel }
+import java.awt.Color
+import java.awt.Font
+
+import scala.collection.JavaConversions.asScalaIterator
+import scala.swing.Dimension
+import scala.swing.BoxPanel
+import scala.swing.Button
+import scala.swing.Label
+import scala.swing.MainFrame
+import scala.swing.Orientation
+import scala.swing.SimpleSwingApplication
+
+import javax.swing.border.LineBorder
 import javax.swing.plaf.FontUIResource
 import javax.swing.UIManager
-import java.awt.Font
-import scala.collection.JavaConversions.asScalaIterator
-import scala.swing.{ Label, Button }
-import scala.swing.Orientation
-import javax.imageio.ImageIO
-import java.awt.Color
-import javax.swing.border.Border
-import javax.swing.border.LineBorder
 
 object BoxPanelSample extends SimpleSwingApplication {
 
@@ -36,7 +40,7 @@ object BoxPanelSample extends SimpleSwingApplication {
       // ツールチップ
       tooltip = "ツールチップ"
       // ボーダー
-      border = new LineBorder(Color.WHITE, 3)
+      border = new LineBorder( Color.WHITE, 3 )
     }
   }
 

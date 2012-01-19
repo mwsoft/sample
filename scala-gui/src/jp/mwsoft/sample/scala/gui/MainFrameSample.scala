@@ -1,11 +1,14 @@
 package jp.mwsoft.sample.scala.gui
 
-import scala.swing.{ SimpleSwingApplication, MainFrame, Dimension, Label }
-import java.awt.{ Cursor, Color, Image }
-import javax.imageio.ImageIO
-import java.io.FileInputStream
-import scala.swing.MenuBar
+import java.awt.Cursor
+
+import scala.swing.Dimension
+import scala.swing.MainFrame
 import scala.swing.Menu
+import scala.swing.MenuBar
+import scala.swing.SimpleSwingApplication
+
+import javax.imageio.ImageIO
 
 object MainFrameSample extends SimpleSwingApplication {
   def top = new MainFrame {
