@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<schema name="example" version="1.4">
+
+  <types>
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" omitNorms="true"/>
+
+    <fieldType name="text_ja" class="solr.TextField" positionIncrementGap="100" autoGeneratePhraseQueries="false">
+      <analyzer>
+        <tokenizer class="solr.JapaneseTokenizerFactory"/>
+      </analyzer>
+    </fieldType>
+  </types>
+
+  <fields>
+    <field name="id" type="string" inexed="true" stored="true" />
+    <field name="title" type="string" inexed="true" stored="true" />
+    <field name="description" type="text_ja" indexed="true" stored="true" />
+  </fields>
+
+  <uniqueKey>id</uniqueKey>
+  <defaultSearchField>description</defaultSearchField>
+  <solrQueryParser defaultOperator="OR"/>
+
+</schema>
