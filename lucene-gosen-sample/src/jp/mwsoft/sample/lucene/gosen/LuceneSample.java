@@ -23,7 +23,12 @@ import org.apache.lucene.util.Version;
 
 public class LuceneSample {
 
-	public static void write(String title, String content) throws IOException {
+	public static void main(String[] args) throws Exception {
+		write();
+		search();
+	}
+
+	public static void write() throws IOException {
 		// GoSenが用意しているAnalyzer
 		Analyzer analyzer = new JapaneseAnalyzer(Version.LUCENE_35);
 
@@ -42,14 +47,14 @@ public class LuceneSample {
 		writer.close();
 	}
 
-	public static void search(String word) throws IOException, ParseException {
+	public static void search() throws IOException, ParseException {
 		// 検索の準備
 		IndexReader reader = IndexReader.open(FSDirectory.open(new File("index")), true);
 		IndexSearcher searcher = new IndexSearcher(reader);
 
 		// 検索クエリの準備
-		Analyzer analyzer = new JapaneseAnalyzer(Version.LUCENE_34);
-		QueryParser parser = new QueryParser(Version.LUCENE_34, "content", analyzer);
+		Analyzer analyzer = new JapaneseAnalyzer(Version.LUCENE_35);
+		QueryParser parser = new QueryParser(Version.LUCENE_35, "content", analyzer);
 		Query query = parser.parse("content:生まれ変わろう");
 
 		// 検索の実行
