@@ -10,12 +10,12 @@ public class Delete {
 		CommonsHttpSolrServer server = new CommonsHttpSolrServer("http://localhost:8983/solr");
 
 		// IDで削除
-        server.deleteById("1");
+		server.deleteById("1");
 
-        // Queryで削除
-        server.deleteByQuery("text:ぶんしょ");
+		// Queryで削除
+		server.deleteByQuery("text:ぶんしょ");
 
-        // Commitしないと反映されない
-        server.commit();
-    }
+		// Commitしないと反映されない
+		server.commit();
+	}
 }

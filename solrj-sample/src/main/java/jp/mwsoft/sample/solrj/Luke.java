@@ -17,13 +17,13 @@ public class Luke {
 		NamedList<Object> index = (NamedList<Object>) namedList.get("index");
 		// ドキュメント数
 		System.out.println(index.get("numDocs"));
-		  //=> 5
+		// => 5
 		// セグメント数
 		System.out.println(index.get("segmentCount"));
-		  //=> 3
+		  // => 3
 		// 最終更新日時
 		System.out.println(index.get("lastModified"));
-		  //=> Sat Feb 11 17:11:21 JST 2012
+		  // => Sat Feb 11 17:11:21 JST 2012
 
 		// テキストフィールドの頻出語を取る
 		NamedList<Object> fields = (NamedList<Object>) namedList.get("fields");
@@ -31,9 +31,9 @@ public class Luke {
 		NamedList<Object> topTerms = (NamedList<Object>) text.get("topTerms");
 		for (Object term : topTerms)
 			System.out.println(term);
-  		      //=> プル=3
-	          //=> ンプ=3
-		      //=> サン=3  以下略
+		      // => プル=3
+		      // => ンプ=3
+		      // => サン=3 以下略
 
 	}
 }

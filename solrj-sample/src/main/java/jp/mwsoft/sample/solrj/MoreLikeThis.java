@@ -32,7 +32,7 @@ public class MoreLikeThis {
 		// 1つ目のドキュメントに対する類似文書の結果を取得（複数返る場合もある）
 		List<SolrDocument> docs =  (List<SolrDocument>)moreLikeThis.getVal(0);
 		// 結果を表示
-		for (SolrDocument doc : (List<SolrDocument>) moreLikeThis.getVal(0))
+		for (SolrDocument doc : docs)
 			System.out.println(doc.get("score") + ", " + doc.get("text"));
 
 		// 普通の検索結果には、id=1の文書の情報が入ってる
