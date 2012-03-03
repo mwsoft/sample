@@ -34,6 +34,8 @@ trait STool extends Configured with Tool {
 
     job.setJarByClass( mapper.getClass() )
     job.setMapperClass( mapper.getClass() )
+    job.setMapOutputKeyClass( mapper.outputKeyClass )
+    job.setMapOutputValueClass( mapper.outputValueClass)
 
     if ( reducer != null ) {
       job.setOutputKeyClass( reducer.outputKeyClass )
