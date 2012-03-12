@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>jp.mwsoft.sample</groupId>
+	<artifactId>wikipedia-orm</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<repositories>
+		<repository>
+			<id>scala-tools.org</id>
+			<url>http://scala-tools.org/repo-releases</url>
+		</repository>
+		<!-- 
+		<repository>
+			<id>git.mwsoft</id>
+			<url>https://github.com/mwsoft/maven/raw/master/</url>
+		</repository>
+		-->
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.liftweb</groupId>
+			<artifactId>lift-mapper_2.9.1</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.3.163</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-compress</artifactId>
+			<version>1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>jp.mwsoft</groupId>
+			<artifactId>h2-lucene-ex</artifactId>
+			<version>1.3.163</version>
+		</dependency>
+	</dependencies>
+</project>
