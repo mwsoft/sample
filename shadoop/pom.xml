@@ -53,15 +53,6 @@
 					</descriptorRefs>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>package</phase>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
 
