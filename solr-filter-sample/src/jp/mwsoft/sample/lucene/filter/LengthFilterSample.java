@@ -16,7 +16,7 @@ public class LengthFilterSample {
 
         MyAnalyzer analyzer = new MyAnalyzer();
 
-        String str = "My father's name was John Kinsella. It's an Irish name.";
+        String str = "It was a bright cold day in April.";
 
         Reader reader = new StringReader(str);
         TokenStream stream = analyzer.tokenStream("", reader);
@@ -25,7 +25,7 @@ public class LengthFilterSample {
             CharTermAttribute term = stream.getAttribute(CharTermAttribute.class);
             System.out.print(term.toString() + "\t");
         }
-        //=> name   was John    It's    Irish   name    
+        //=> was	cold	day	April	and	the	were
     }
 
     static class MyAnalyzer extends Analyzer {

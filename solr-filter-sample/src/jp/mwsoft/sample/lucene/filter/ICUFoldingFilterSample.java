@@ -12,27 +12,27 @@ import org.apache.lucene.util.Version;
 
 public class ICUFoldingFilterSample {
 
-    public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 
-        MyAnalyzer analyzer = new MyAnalyzer();
+		MyAnalyzer analyzer = new MyAnalyzer();
 
-        String str = "où ④番 ≠ Σ ﾀﾞｸﾃﾝ だくてんが";
+		String str = "où ④番 ≠ Ⅲ世 Σ ﾀﾞｸﾃﾝ だくてん";
 
-        Reader reader = new StringReader(str);
-        TokenStream stream = analyzer.tokenStream("", reader);
+		Reader reader = new StringReader(str);
+		TokenStream stream = analyzer.tokenStream("", reader);
 
-        while (stream.incrementToken()) {
-            CharTermAttribute term = stream.getAttribute(CharTermAttribute.class);
-            System.out.print(term.toString() + "\t");
-        }
-        // => ou    4番  =   σ   タクテン    たくてんか
-    }
+		while (stream.incrementToken()) {
+			CharTermAttribute term = stream.getAttribute(CharTermAttribute.class);
+			System.out.print(term.toString() + "\t");
+		}
+		// => ou	4番	=	iii世	σ	タクテン	たくてん	
+	}
 
-    static class MyAnalyzer extends Analyzer {
-        public final TokenStream tokenStream(String fieldName, Reader reader) {
-            TokenStream result = new WhitespaceTokenizer(Version.LUCENE_36, reader);
-            result = new ICUFoldingFilter(result);
-            return result;
-        }
-    }
+	static class MyAnalyzer extends Analyzer {
+		public final TokenStream tokenStream(String fieldName, Reader reader) {
+			TokenStream result = new WhitespaceTokenizer(Version.LUCENE_36, reader);
+			result = new ICUFoldingFilter(result);
+			return result;
+		}
+	}
 }

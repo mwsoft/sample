@@ -16,7 +16,7 @@ public class EnglishPossessiveFilterSample {
 
         MyAnalyzer analyzer = new MyAnalyzer();
 
-        String str = "My father's name was John Kinsella. It's an Irish name.";
+        String str = "My father's name was John Kinsella. I'm Rey Kinsella.";
 
         Reader reader = new StringReader(str);
         TokenStream stream = analyzer.tokenStream("", reader);

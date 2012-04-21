@@ -15,7 +15,7 @@ public class JapaneseBaseFormFilterSample {
 
         MyAnalyzer analyzer = new MyAnalyzer();
 
-        String str = "控えろ。わきまえろ。お前たちが簡単にお会いできるような人ではない。";
+        String str = "控えろ。お前たちが簡単にお会いできる人ではない。";
 
         Reader reader = new StringReader(str);
         TokenStream stream = analyzer.tokenStream("", reader);
@@ -24,7 +24,7 @@ public class JapaneseBaseFormFilterSample {
             CharTermAttribute term = stream.getAttribute(CharTermAttribute.class);
             System.out.print(term.toString() + "\t");
         }
-        // => 控える   わきまえる   お前  たち  が   簡単  に   お   会う  できる よう  だ   人   で   は   ない    
+        // => 控える	お前	たち	が	簡単	に	お	会う	できる	人	で	は	ない	 
     }
 
     static class MyAnalyzer extends Analyzer {

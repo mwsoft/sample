@@ -18,7 +18,7 @@ public class StopFilterSample {
 
         MyAnalyzer analyzer = new MyAnalyzer();
 
-        String str = "My father's name was John Kinsella. It's an Irish name.";
+        String str = "Big brother is watching you, the caption beneath it ran.";
 
         Reader reader = new StringReader(str);
         TokenStream stream = analyzer.tokenStream("", reader);

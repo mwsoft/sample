@@ -16,7 +16,7 @@ public class KStemFilterSample {
 
         MyAnalyzer analyzer = new MyAnalyzer();
 
-        String str = "logs balls boxes children men feet as was going japanesed";
+        String str = "logs balls boxes children men feet as was going japanese";
 
         Reader reader = new StringReader(str);
         TokenStream stream = analyzer.tokenStream("", reader);

@@ -15,7 +15,7 @@ public class JapaneseReadingFormFilterSample {
 
         MyAnalyzer analyzer = new MyAnalyzer();
 
-        String str = "控えろ。わきまえろ。お前たちが簡単にお会いできるような人ではない。";
+        String str = "疲れたろう。僕も疲れたんだ。";
 
         Reader reader = new StringReader(str);
         TokenStream stream = analyzer.tokenStream("", reader);
@@ -24,16 +24,13 @@ public class JapaneseReadingFormFilterSample {
             CharTermAttribute term = stream.getAttribute(CharTermAttribute.class);
             System.out.print(term.toString() + "\t");
         }
-        // => ヒカエロ  ワキマエロ   オマエ タチ  ガ   カンタン    ニ   オ   アイ  デキル ヨウ  ナ   ヒト  デ   ハ   ナイ
-        
-        // 引数をresult, trueにした場合
-        // hikaero  wakimaero   omae    tachi   ga  kantan  ni  o   ai  dekiru  yō  na  hito    de  ha  nai
+        // => ツカレ	タロ	ウ	ボク	モ	ツカレ	タ	ン	ダ	
     }
 
     static class MyAnalyzer extends Analyzer {
         public final TokenStream tokenStream(String fieldName, Reader reader) {
             TokenStream result = new JapaneseTokenizer(reader, null, true, JapaneseTokenizer.Mode.NORMAL);
-            result = new JapaneseReadingFormFilter(result);
+            result = new JapaneseReadingFormFilter(result, true);
             return result;
         }
     }

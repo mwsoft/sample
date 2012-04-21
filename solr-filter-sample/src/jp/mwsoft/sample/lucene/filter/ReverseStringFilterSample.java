@@ -16,7 +16,7 @@ public class ReverseStringFilterSample {
 
         MyAnalyzer analyzer = new MyAnalyzer();
 
-        String str = "My father's name was John Kinsella. It's an Irish name.";
+        String str = "Long, long ago, when people spoke languages...";
 
         Reader reader = new StringReader(str);
         TokenStream stream = analyzer.tokenStream("", reader);
@@ -25,7 +25,7 @@ public class ReverseStringFilterSample {
             CharTermAttribute term = stream.getAttribute(CharTermAttribute.class);
             System.out.print(term.toString() + "\t");
         }
-        // => yM    s'rehtaf    eman    saw nhoJ    allesniK    s'tI    na  hsirI   eman    
+        // => gnoL	gnol	oga	nehw	elpoep	ekops	segaugnal
     }
 
     static class MyAnalyzer extends Analyzer {
