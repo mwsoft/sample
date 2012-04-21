@@ -1,22 +1,22 @@
-package jp.mwsoft.sample.hadoop.solrwordcount;
+package jp.mwsoft.sample.lucene.filter;
 
 import java.io.Reader;
 import java.io.StringReader;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.en.KStemFilter;
+import org.apache.lucene.analysis.cjk.CJKBigramFilter;
 import org.apache.lucene.analysis.standard.StandardTokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.util.Version;
 
-public class KStemFilterSample {
+public class CJKBigramFilterSample {
 
     public static void main(String[] args) throws Exception {
 
         MyAnalyzer analyzer = new MyAnalyzer();
 
-        String str = "logs balls boxes children men feet as was going japanesed";
+        String str = "ひらがなカタカナ漢字文字列";
 
         Reader reader = new StringReader(str);
         TokenStream stream = analyzer.tokenStream("", reader);
@@ -25,13 +25,13 @@ public class KStemFilterSample {
             CharTermAttribute term = stream.getAttribute(CharTermAttribute.class);
             System.out.print(term.toString() + "\t");
         }
-        //=> log    balls   box children    men feet    as  was go  japan       
+        //=>     ひら らが  がな  カタカナ    漢字  字文  文字  字列  
     }
 
     static class MyAnalyzer extends Analyzer {
         public final TokenStream tokenStream(String fieldName, Reader reader) {
             TokenStream result = new StandardTokenizer(Version.LUCENE_36, reader);
-            result = new KStemFilter(result);
+            result = new CJKBigramFilter(result, CJKBigramFilter.HAN | CJKBigramFilter.HIRAGANA);
             return result;
         }
     }

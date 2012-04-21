@@ -1,21 +1,22 @@
-package jp.mwsoft.sample.hadoop.solrwordcount;
+package jp.mwsoft.sample.lucene.filter;
 
 import java.io.Reader;
 import java.io.StringReader;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.ja.JapaneseBaseFormFilter;
-import org.apache.lucene.analysis.ja.JapaneseTokenizer;
+import org.apache.lucene.analysis.cjk.CJKWidthFilter;
+import org.apache.lucene.analysis.standard.StandardTokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
+import org.apache.lucene.util.Version;
 
-public class JapaneseBaseFormFilterSample {
+public class CJKWidthFilterSample {
 
     public static void main(String[] args) throws Exception {
 
         MyAnalyzer analyzer = new MyAnalyzer();
 
-        String str = "控えろ。わきまえろ。お前たちが簡単にお会いできるような人ではない。";
+        String str = "１ Ａ ｶﾅ";
 
         Reader reader = new StringReader(str);
         TokenStream stream = analyzer.tokenStream("", reader);
@@ -24,13 +25,13 @@ public class JapaneseBaseFormFilterSample {
             CharTermAttribute term = stream.getAttribute(CharTermAttribute.class);
             System.out.print(term.toString() + "\t");
         }
-        // => 控える   わきまえる   お前  たち  が   簡単  に   お   会う  できる よう  だ   人   で   は   ない    
+        //=>   1    A   カナ    
     }
 
     static class MyAnalyzer extends Analyzer {
         public final TokenStream tokenStream(String fieldName, Reader reader) {
-            TokenStream result = new JapaneseTokenizer(reader, null, true, JapaneseTokenizer.Mode.NORMAL);
-            result = new JapaneseBaseFormFilter(result);
+            TokenStream result = new StandardTokenizer(Version.LUCENE_36, reader);
+            result = new CJKWidthFilter(result);
             return result;
         }
     }

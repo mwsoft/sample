@@ -1,22 +1,22 @@
-package jp.mwsoft.sample.hadoop.solrwordcount;
+package jp.mwsoft.sample.lucene.filter;
 
 import java.io.Reader;
 import java.io.StringReader;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.en.EnglishMinimalStemFilter;
-import org.apache.lucene.analysis.standard.StandardTokenizer;
+import org.apache.lucene.analysis.WhitespaceTokenizer;
+import org.apache.lucene.analysis.icu.ICUFoldingFilter;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.util.Version;
 
-public class EnglishMinimalStemFilterSample {
+public class ICUFoldingFilterSample {
 
     public static void main(String[] args) throws Exception {
 
         MyAnalyzer analyzer = new MyAnalyzer();
 
-        String str = "logs balls boxes children men feet as was";
+        String str = "où ④番 ≠ Σ ﾀﾞｸﾃﾝ だくてんが";
 
         Reader reader = new StringReader(str);
         TokenStream stream = analyzer.tokenStream("", reader);
@@ -25,13 +25,13 @@ public class EnglishMinimalStemFilterSample {
             CharTermAttribute term = stream.getAttribute(CharTermAttribute.class);
             System.out.print(term.toString() + "\t");
         }
-        // => log   ball    boxe    children    men feet    as  wa  
+        // => ou    4番  =   σ   タクテン    たくてんか
     }
 
     static class MyAnalyzer extends Analyzer {
         public final TokenStream tokenStream(String fieldName, Reader reader) {
-            TokenStream result = new StandardTokenizer(Version.LUCENE_36, reader);
-            result = new EnglishMinimalStemFilter(result);
+            TokenStream result = new WhitespaceTokenizer(Version.LUCENE_36, reader);
+            result = new ICUFoldingFilter(result);
             return result;
         }
     }

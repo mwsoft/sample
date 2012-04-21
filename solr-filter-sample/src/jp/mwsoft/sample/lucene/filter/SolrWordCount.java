@@ -1,4 +1,4 @@
-package jp.mwsoft.sample.hadoop.solrwordcount;
+package jp.mwsoft.sample.lucene.filter;
 
 import java.io.Reader;
 import java.io.StringReader;

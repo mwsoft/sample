@@ -1,23 +1,23 @@
-package jp.mwsoft.sample.hadoop.solrwordcount;
+package jp.mwsoft.sample.lucene.filter;
 
 import java.io.Reader;
 import java.io.StringReader;
 
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.LowerCaseFilter;
+import org.apache.lucene.analysis.CharReader;
 import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.WhitespaceTokenizer;
-import org.apache.lucene.analysis.icu.ICUNormalizer2Filter;
+import org.apache.lucene.analysis.charfilter.HTMLStripCharFilter;
+import org.apache.lucene.analysis.standard.StandardTokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.util.Version;
 
-public class ICUNormalizer2FilterSample {
+public class HTMLStripCharFilterSample {
 
     public static void main(String[] args) throws Exception {
 
         MyAnalyzer analyzer = new MyAnalyzer();
 
-        String str = "④番。Ⅲ世。ﾀﾞｸﾃﾝ。";
+        String str = "<html><head><title>title element</title><script>script element</script></head><body>body element</body></html>";
 
         Reader reader = new StringReader(str);
         TokenStream stream = analyzer.tokenStream("", reader);
@@ -26,14 +26,13 @@ public class ICUNormalizer2FilterSample {
             CharTermAttribute term = stream.getAttribute(CharTermAttribute.class);
             System.out.print(term.toString() + "\t");
         }
-        // => 4番。iii世。ダクテン。 
+        // => title element body    element 
     }
 
     static class MyAnalyzer extends Analyzer {
         public final TokenStream tokenStream(String fieldName, Reader reader) {
-            TokenStream result = new WhitespaceTokenizer(Version.LUCENE_36, reader);
-            result = new ICUNormalizer2Filter(result);
-            result = new LowerCaseFilter(Version.LUCENE_36, result);
+            reader = new HTMLStripCharFilter(CharReader.get(reader));
+            TokenStream result = new StandardTokenizer(Version.LUCENE_36, reader);
             return result;
         }
     }
