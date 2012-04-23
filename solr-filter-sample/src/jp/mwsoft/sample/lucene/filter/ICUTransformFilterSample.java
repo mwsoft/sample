@@ -5,18 +5,19 @@ import java.io.StringReader;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.cjk.CJKWidthFilter;
-import org.apache.lucene.analysis.standard.StandardTokenizer;
+import org.apache.lucene.analysis.icu.ICUTransformFilter;
+import org.apache.lucene.analysis.ja.JapaneseTokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
-import org.apache.lucene.util.Version;
 
-public class CJKWidthFilterSample {
+import com.ibm.icu.text.Transliterator;
+
+public class ICUTransformFilterSample {
 
     public static void main(String[] args) throws Exception {
 
         MyAnalyzer analyzer = new MyAnalyzer();
 
-        String str = "１２３ ＡＢＣ ﾊﾝｶｸｶﾅ";
+        String str = "控えろ。お前たちが簡単にお会いできる人ではない。";
 
         Reader reader = new StringReader(str);
         TokenStream stream = analyzer.tokenStream("", reader);
@@ -25,13 +26,14 @@ public class CJKWidthFilterSample {
             CharTermAttribute term = stream.getAttribute(CharTermAttribute.class);
             System.out.print(term.toString() + "\t");
         }
-        //=>   123	ABC	ハンカクカナ	 
+        // => 控エロ   オ前  タチ  ガ   簡単  ニ   オ   会イ  デキル 人   デ   ハ   ナイ  
     }
 
     static class MyAnalyzer extends Analyzer {
         public final TokenStream tokenStream(String fieldName, Reader reader) {
-            TokenStream result = new StandardTokenizer(Version.LUCENE_36, reader);
-            result = new CJKWidthFilter(result);
+            TokenStream result = new JapaneseTokenizer(reader, null, true, JapaneseTokenizer.Mode.NORMAL);
+            // 平仮名をカタカナに
+            result = new ICUTransformFilter(result, Transliterator.getInstance("Hiragana-Katakana"));
             return result;
         }
     }
