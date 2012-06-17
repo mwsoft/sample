@@ -44,7 +44,7 @@ public class Train {
 		BufferedWriter writer = null;
 		try {
 			writer = new BufferedWriter(new FileWriter("model/model.txt"));
-			for (File file: fileList) {
+			for (File file : fileList) {
 				List<Term> terms = getTerms(file.getPath());
 				setTrainLine(terms);
 				for (Term term : terms)
@@ -66,7 +66,7 @@ public class Train {
 			String line;
 			while ((line = reader.readLine()) != null) {
 				Term term = getTerm(line);
-				if(term != null)
+				if (term != null)
 					terms.add(term);
 			}
 		} finally {
@@ -75,7 +75,7 @@ public class Train {
 		}
 		return terms;
 	}
-	
+
 	/** 1行データをTermに変換 */
 	public static Term getTerm(String line) {
 		String[] param = line.split("\t", -1);
@@ -90,11 +90,15 @@ public class Train {
 		for (int i = 0; i < terms.size(); i++) {
 			StringBuilder buf = new StringBuilder();
 			buf.append(terms.get(i).getValue());
+			// 続く5つの形態素の情報を記述する
 			for (int j = 0; j < 5; j++) {
 				if (terms.size() - 1 <= i + j)
 					break;
 				buf.append(" " + terms.get(i + j).toTrainString(j * 100 + 1));
 			}
+			// 1つ手前の形態素の情報も記述する
+			if (i - 1 > 0)
+				buf.append(" " + terms.get(i - 1).toTrainString(500 + 1));
 			terms.get(i).setTrainLine(buf.toString());
 		}
 	}
