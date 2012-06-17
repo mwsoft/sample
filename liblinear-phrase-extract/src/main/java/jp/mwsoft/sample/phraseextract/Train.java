@@ -97,8 +97,10 @@ public class Train {
 				buf.append(" " + terms.get(i + j).toTrainString(j * 100 + 1));
 			}
 			// 1つ手前の形態素の情報も記述する
-			if (i - 1 > 0)
+			if (i - 1 > 0) {
 				buf.append(" " + terms.get(i - 1).toTrainString(500 + 1));
+				buf.append(" 601:" + terms.get(i - 1).getValue());
+			}
 			terms.get(i).setTrainLine(buf.toString());
 		}
 	}
