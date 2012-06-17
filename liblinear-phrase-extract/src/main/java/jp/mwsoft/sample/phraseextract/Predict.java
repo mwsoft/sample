@@ -58,7 +58,7 @@ public class Predict {
 	public static List<Term> getTerms(String path) throws IOException {
 		// 対象ファイルを形態素解析にかけ、Termに変換
 		List<Term> terms = new ArrayList<Term>();
-		for (Term term : Tokenizer.parseFile(path))
+		for (Term term : Tokenizer.tokenizeFile(path))
 			terms.add(Train.getTerm(term.toString()));
 		Train.setTrainLine(terms);
 		return terms;

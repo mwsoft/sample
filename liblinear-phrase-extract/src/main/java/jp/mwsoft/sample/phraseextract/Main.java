@@ -17,7 +17,7 @@ public class Main {
 
 		// parse
 		if (args.length > 1 && "parse".equals(args[0]) && new File(args[1]).exists()) {
-			Tokenizer.parse(args[1]);
+			Tokenizer.main(args[1]);
 		}
 		// train
 		else if ("train".equals(args[0])) {

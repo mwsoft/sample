@@ -24,6 +24,9 @@ public class FeatureId {
 				throw new RuntimeException(e);
 			}
 		}
+		if(!featureMap.containsKey(feature))
+			throw new RuntimeException( "feature_id " + feature + " not found. add fetture_id" );
+			
 		return featureMap.get(feature);
 	}
 
